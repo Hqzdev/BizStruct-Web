@@ -3,6 +3,8 @@
 import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
+import Link from "next/link"
+import { getStoredLanguage, setStoredLanguage, type Language } from "@/lib/language"
 import SmartSimpleBrilliant from "../components/smart-simple-brilliant"
 import YourWorkInSync from "../components/your-work-in-sync"
 import EffortlessIntegration from "../components/effortless-integration-updated"
@@ -41,6 +43,423 @@ function useIntersectionObserver(
   }, [ref, options])
 
   return isVisible
+}
+
+// Notion Dashboard Visualization Component
+function NotionDashboardVisualization({ type, language }: { type: 0 | 1 | 2; language: Language }) {
+  const themeVars = {
+    "--nts-surface": "#ffffff",
+    "--nts-text-primary": "#2f3037",
+    "--nts-text-secondary": "rgba(47,48,55,0.8)",
+    "--nts-text-muted": "rgba(55,50,47,0.7)",
+    "--nts-border": "rgba(47,48,55,0.12)",
+    "--nts-shadow": "rgba(47,48,55,0.06)",
+  } as React.CSSProperties
+
+  const t = translations[language]
+
+  // Card 0: Telegram Capture - Notion Inbox View
+  if (type === 0) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "relative",
+          background: "var(--nts-surface)",
+          ...themeVars,
+        }}
+      >
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            padding: "24px",
+            boxSizing: "border-box",
+            gap: "16px",
+          }}
+        >
+          {/* Notion Header */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              paddingBottom: "16px",
+              borderBottom: "1px solid rgba(0,0,0,0.08)",
+            }}
+          >
+            <div
+              style={{
+                width: "20px",
+                height: "20px",
+                borderRadius: "3px",
+                backgroundColor: "#37322F",
+              }}
+            />
+            <div
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontWeight: 600,
+                fontSize: "14px",
+                color: "var(--nts-text-primary)",
+              }}
+            >
+              BizStruct Inbox
+            </div>
+          </div>
+
+          {/* Database View */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px", flexGrow: 1 }}>
+            {/* Table Header */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "2fr 1fr 1fr 1fr",
+                gap: "12px",
+                padding: "8px 12px",
+                backgroundColor: "rgba(0,0,0,0.02)",
+                borderRadius: "4px",
+                fontSize: "11px",
+                fontFamily: "Inter, sans-serif",
+                fontWeight: 500,
+                color: "var(--nts-text-muted)",
+              }}
+            >
+              <div>Item</div>
+              <div>Type</div>
+              <div>Source</div>
+              <div>Status</div>
+            </div>
+
+            {/* Table Rows */}
+            {[
+              { item: "Review Q4 financials", type: "Task", source: "Telegram", status: "New" },
+              { item: "Client onboarding call", type: "Project", source: "Telegram", status: "In Progress" },
+              { item: "Invoice #1234", type: "Finance", source: "Gmail", status: "New" },
+              { item: "Team standup notes", type: "Task", source: "Telegram", status: "Done" },
+              { item: "New client inquiry", type: "Client", source: "Gmail", status: "New" },
+            ].map((row, index) => (
+              <div
+                key={index}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "2fr 1fr 1fr 1fr",
+                  gap: "12px",
+                  padding: "10px 12px",
+                  backgroundColor: index % 2 === 0 ? "transparent" : "rgba(0,0,0,0.01)",
+                  borderRadius: "4px",
+                  fontSize: "12px",
+                  fontFamily: "Inter, sans-serif",
+                }}
+              >
+                <div style={{ color: "var(--nts-text-primary)", fontWeight: 500 }}>{row.item}</div>
+                <div
+                  style={{
+                    color: "var(--nts-text-secondary)",
+                    fontSize: "11px",
+                    padding: "2px 6px",
+                    backgroundColor: "rgba(93,78,55,0.1)",
+                    borderRadius: "3px",
+                    display: "inline-block",
+                    width: "fit-content",
+                  }}
+                >
+                  {row.type}
+                </div>
+                <div style={{ color: "var(--nts-text-muted)", fontSize: "11px" }}>{row.source}</div>
+                <div
+                  style={{
+                    color: row.status === "Done" ? "#5D4E37" : row.status === "In Progress" ? "#8B6F47" : "var(--nts-text-muted)",
+                    fontSize: "11px",
+                    fontWeight: row.status === "New" ? 600 : 400,
+                  }}
+                >
+                  {row.status}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Card 1: Gmail → Notion - AI Classification View
+  if (type === 1) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "relative",
+          background: "var(--nts-surface)",
+          ...themeVars,
+        }}
+      >
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            padding: "24px",
+            boxSizing: "border-box",
+            gap: "16px",
+          }}
+        >
+          {/* Notion Header */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              paddingBottom: "16px",
+              borderBottom: "1px solid rgba(0,0,0,0.08)",
+            }}
+          >
+            <div
+              style={{
+                width: "20px",
+                height: "20px",
+                borderRadius: "3px",
+                backgroundColor: "#37322F",
+              }}
+            />
+            <div
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontWeight: 600,
+                fontSize: "14px",
+                color: "var(--nts-text-primary)",
+              }}
+            >
+              AI Classification
+            </div>
+          </div>
+
+          {/* Classification Cards */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px", flexGrow: 1 }}>
+            {[
+              {
+                title: "Email: Project Update",
+                from: "client@example.com",
+                classified: "Project → Q4 Campaign",
+                tags: ["Client", "Urgent"],
+              },
+              {
+                title: "Email: Invoice Payment",
+                from: "finance@example.com",
+                classified: "Finance → Invoice #1234",
+                tags: ["Finance", "Payment"],
+              },
+              {
+                title: "Email: Meeting Request",
+                from: "team@example.com",
+                classified: "Task → Schedule Meeting",
+                tags: ["Task", "Calendar"],
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  padding: "16px",
+                  backgroundColor: "rgba(0,0,0,0.02)",
+                  borderRadius: "6px",
+                  border: "1px solid rgba(0,0,0,0.06)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "13px",
+                    color: "var(--nts-text-primary)",
+                  }}
+                >
+                  {item.title}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "11px",
+                    color: "var(--nts-text-muted)",
+                  }}
+                >
+                  From: {item.from}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "12px",
+                    color: "#5D4E37",
+                    fontWeight: 500,
+                    marginTop: "4px",
+                  }}
+                >
+                  → {item.classified}
+                </div>
+                <div style={{ display: "flex", gap: "6px", marginTop: "4px" }}>
+                  {item.tags.map((tag, tagIndex) => (
+                    <div
+                      key={tagIndex}
+                      style={{
+                        fontSize: "10px",
+                        padding: "3px 8px",
+                        backgroundColor: "rgba(93,78,55,0.1)",
+                        borderRadius: "3px",
+                        color: "#5D4E37",
+                        fontFamily: "Inter, sans-serif",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Card 2: Daily Summary - Telegram View
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        position: "relative",
+        background: "var(--nts-surface)",
+        ...themeVars,
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          padding: "24px",
+          boxSizing: "border-box",
+          gap: "16px",
+        }}
+      >
+        {/* Telegram Header */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            paddingBottom: "16px",
+            borderBottom: "1px solid rgba(0,0,0,0.08)",
+          }}
+        >
+          <div
+            style={{
+              width: "32px",
+              height: "32px",
+              borderRadius: "50%",
+              backgroundColor: "#0088cc",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
+              fontFamily: "Inter, sans-serif",
+              fontWeight: 600,
+              fontSize: "14px",
+            }}
+          >
+            BS
+          </div>
+          <div
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontWeight: 600,
+              fontSize: "14px",
+              color: "var(--nts-text-primary)",
+            }}
+          >
+            BizStruct Assistant
+          </div>
+        </div>
+
+        {/* Summary Message */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            flexGrow: 1,
+            backgroundColor: "rgba(0,136,204,0.05)",
+            borderRadius: "8px",
+            padding: "16px",
+            border: "1px solid rgba(0,136,204,0.1)",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontWeight: 600,
+              fontSize: "13px",
+              color: "var(--nts-text-primary)",
+              marginBottom: "4px",
+            }}
+          >
+            📊 Daily Summary - Today
+          </div>
+
+          {[
+            { label: "Today's Tasks", value: "12", icon: "✓" },
+            { label: "Overdue", value: "3", icon: "⚠️" },
+            { label: "New Projects", value: "2", icon: "📁" },
+            { label: "Revenue (MTD)", value: "$47,231", icon: "💰" },
+          ].map((stat, index) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "8px 0",
+                borderBottom: index < 3 ? "1px solid rgba(0,0,0,0.05)" : "none",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <span style={{ fontSize: "14px" }}>{stat.icon}</span>
+                <div
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "12px",
+                    color: "var(--nts-text-secondary)",
+                  }}
+                >
+                  {stat.label}
+                </div>
+              </div>
+              <div
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  color: "#5D4E37",
+                }}
+              >
+                {stat.value}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
 }
 
 // Reusable Badge Component
@@ -185,7 +604,7 @@ const translations = {
 export default function LandingPage() {
   const [activeCard, setActiveCard] = useState(0)
   const [progress, setProgress] = useState(0)
-  const [language, setLanguage] = useState<"en" | "ru">("en")
+  const [language, setLanguage] = useState<Language>("en")
   const mountedRef = useRef(true)
   const t = translations[language]
 
@@ -223,8 +642,16 @@ export default function LandingPage() {
   }, [])
 
   useEffect(() => {
+    setLanguage(getStoredLanguage())
+
+    const handleLanguageChange = (event: CustomEvent<Language>) => {
+      setLanguage(event.detail)
+    }
+
+    window.addEventListener("languageChange" as any, handleLanguageChange)
     return () => {
       mountedRef.current = false
+      window.removeEventListener("languageChange" as any, handleLanguageChange)
     }
   }, [])
 
@@ -248,19 +675,19 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="w-full min-h-screen relative bg-[#F7F5F3] overflow-x-hidden flex flex-col justify-start items-center page-load">
-      <div className="relative flex flex-col justify-start items-center w-full">
+    <div className="w-full min-h-screen relative bg-[#F7F5F3] overflow-x-hidden flex flex-col justify-start items-start page-load">
+      <div className="relative flex flex-col justify-start items-start w-full">
         {/* Main container with proper margins */}
-        <div className="w-full max-w-none px-4 sm:px-6 md:px-8 lg:px-0 lg:max-w-[1060px] lg:w-[1060px] relative flex flex-col justify-start items-start min-h-screen">
+        <div className="w-full max-w-none px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 lg:max-w-[1400px] xl:max-w-[1600px] relative flex flex-col justify-start items-start min-h-screen">
           {/* Left vertical line */}
           <div className="w-[1px] h-full absolute left-4 sm:left-6 md:left-8 lg:left-0 top-0 bg-[rgba(55,50,47,0.12)] shadow-[1px_0px_0px_white] z-0"></div>
 
           {/* Right vertical line */}
           <div className="w-[1px] h-full absolute right-4 sm:right-6 md:right-8 lg:right-0 top-0 bg-[rgba(55,50,47,0.12)] shadow-[1px_0px_0px_white] z-0"></div>
 
-            <div className="self-stretch pt-[9px] overflow-hidden flex flex-col justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-[66px] relative z-10">
+            <div className="self-stretch pt-[9px] overflow-hidden flex flex-col justify-start items-start gap-4 sm:gap-6 md:gap-8 lg:gap-[66px] relative z-10">
               {/* Navigation - always visible at the top under the main header */}
-              <div className="w-full h-16 sm:h-20 md:h-24 lg:h-[96px] fixed inset-x-0 top-[10px] flex justify-center items-center z-40 px-6 sm:px-8 md:px-12 lg:px-0">
+              <div className="w-full h-16 sm:h-20 md:h-24 lg:h-[96px] fixed inset-x-0 top-[10px] flex justify-start items-center z-40 px-6 sm:px-8 md:px-12 lg:px-12 xl:px-16">
 
               <div className="w-full max-w-[calc(100%-32px)] sm:max-w-[calc(100%-48px)] md:max-w-[calc(100%-64px)] lg:max-w-[700px] lg:w-[700px] h-10 sm:h-11 md:h-12 py-1.5 sm:py-2 px-3 sm:px-4 md:px-4 pr-2 sm:pr-3 bg-[#F7F5F3] backdrop-blur-sm shadow-[0px_0px_0px_2px_white] overflow-hidden rounded-[50px] flex justify-between items-center relative z-30">
                 <div className="flex justify-center items-center">
@@ -270,26 +697,31 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <div className="pl-3 sm:pl-4 md:pl-5 lg:pl-5 flex justify-start items-start hidden sm:flex flex-row gap-2 sm:gap-3 md:gap-4 lg:gap-4">
-                    <div className="flex justify-start items-center">
+                    <Link href="/features" className="flex justify-start items-center">
                       <div className="flex flex-col justify-center text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans transition-smooth hover:text-[#37322F] cursor-pointer">
                         {t.nav.products}
                       </div>
-                    </div>
-                    <div className="flex justify-start items-center">
+                    </Link>
+                    <Link href="/pricing" className="flex justify-start items-center">
                       <div className="flex flex-col justify-center text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans transition-smooth hover:text-[#37322F] cursor-pointer">
                         {t.nav.pricing}
                       </div>
-                    </div>
-                    <div className="flex justify-start items-center">
+                    </Link>
+                    <Link href="/documentation" className="flex justify-start items-center">
                       <div className="flex flex-col justify-center text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans transition-smooth hover:text-[#37322F] cursor-pointer">
                         {t.nav.docs}
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 </div>
                 <div className="h-6 sm:h-7 md:h-8 flex justify-start items-start gap-2 sm:gap-3">
                   <button
-                    onClick={() => setLanguage(language === "en" ? "ru" : "en")}
+                    onClick={() => {
+                      const newLanguage = language === "en" ? "ru" : "en"
+                      setLanguage(newLanguage)
+                      setStoredLanguage(newLanguage)
+                      window.dispatchEvent(new CustomEvent("languageChange", { detail: newLanguage }))
+                    }}
                     className="px-2 sm:px-3 md:px-[14px] py-1 sm:py-[6px] bg-white shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center hover:bg-[#F7F5F3] transition-smooth hover:scale-105 cursor-pointer"
                     aria-label="Toggle language"
                   >
@@ -314,18 +746,18 @@ export default function LandingPage() {
             {/* Hero Section */}
             <div
               ref={heroRef}
-              className={`pt-16 sm:pt-20 md:pt-24 lg:pt-[216px] pb-8 sm:pb-12 md:pb-16 flex flex-col justify-start items-center px-2 sm:px-4 md:px-8 lg:px-0 w-full sm:pl-0 sm:pr-0 pl-0 pr-0 ${
+              className={`pt-16 sm:pt-20 md:pt-24 lg:pt-[216px] pb-8 sm:pb-12 md:pb-16 flex flex-col justify-start items-start px-2 sm:px-4 md:px-8 lg:px-0 w-full ${
                 heroVisible ? "animate-on-scroll animate-fade-in-up" : "animate-on-scroll"
               }`}
             >
-              <div className="w-full max-w-[937px] lg:w-[937px] flex flex-col justify-center items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-                <div className="self-stretch rounded-[3px] flex flex-col justify-center items-center gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-                  <div className="w-full max-w-[748.71px] lg:w-[748.71px] text-center flex justify-center flex-col text-[#37322F] text-[24px] xs:text-[28px] sm:text-[36px] md:text-[52px] lg:text-[80px] font-normal leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-24 font-serif px-2 sm:px-4 md:px-0 transition-smooth">
+              <div className="w-full max-w-[1200px] lg:w-[1200px] flex flex-col justify-start items-start gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+                <div className="self-stretch rounded-[3px] flex flex-col justify-start items-start gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+                  <div className="w-full max-w-[900px] lg:w-[900px] text-left flex justify-start flex-col text-[#37322F] text-[24px] xs:text-[28px] sm:text-[36px] md:text-[52px] lg:text-[80px] font-normal leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-24 font-serif transition-smooth">
                     {t.hero.title}
                     <br />
                     {t.hero.titleLine2}
                   </div>
-                  <div className="w-full max-w-[506.08px] lg:w-[506.08px] text-center flex justify-center flex-col text-[rgba(55,50,47,0.80)] sm:text-lg md:text-xl leading-[1.4] sm:leading-[1.45] md:leading-[1.5] lg:leading-7 font-sans px-2 sm:px-4 md:px-0 lg:text-lg font-medium text-sm transition-smooth">
+                  <div className="w-full max-w-[700px] lg:w-[700px] text-left flex justify-start flex-col text-[rgba(55,50,47,0.80)] sm:text-lg md:text-xl leading-[1.4] sm:leading-[1.45] md:leading-[1.5] lg:leading-7 font-sans lg:text-lg font-medium text-sm transition-smooth">
                     {t.hero.description}
                     <br className="hidden sm:block" />
                     {t.hero.descriptionLine2}
@@ -333,7 +765,7 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              <div className="w-full max-w-[497px] lg:w-[497px] flex flex-col justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10 mt-6 sm:mt-8 md:mt-10 lg:mt-12">
+              <div className="w-full max-w-[497px] lg:w-[497px] flex flex-col justify-start items-start gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10 mt-6 sm:mt-8 md:mt-10 lg:mt-12">
                 <div className="backdrop-blur-[8.25px] flex justify-start items-center gap-4">
                   <a
                     href="https://t.me/Bizstruct_bot"
@@ -360,50 +792,36 @@ export default function LandingPage() {
                 />
               </div>
 
-              <div className="w-full max-w-[960px] lg:w-[960px] pt-2 sm:pt-4 pb-6 sm:pb-8 md:pb-10 px-2 sm:px-4 md:px-6 lg:px-11 flex flex-col justify-center items-center gap-2 relative z-5 my-8 sm:my-12 md:my-16 lg:my-16 mb-0 lg:pb-0">
-                <div className="w-full max-w-[960px] lg:w-[960px] h-[200px] sm:h-[280px] md:h-[450px] lg:h-[695.55px] bg-white shadow-[0px_0px_0px_0.9056603908538818px_rgba(0,0,0,0.08)] overflow-hidden rounded-[6px] sm:rounded-[8px] lg:rounded-[9.06px] flex flex-col justify-start items-start">
+              <div className="w-full max-w-[1200px] lg:w-[1200px] xl:w-[1400px] pt-2 sm:pt-4 pb-6 sm:pb-8 md:pb-10 px-2 sm:px-4 md:px-6 lg:px-11 flex flex-col justify-start items-start gap-2 relative z-5 my-8 sm:my-12 md:my-16 lg:my-16 mb-0 lg:pb-0">
+                <div className="w-full max-w-[1200px] lg:w-[1200px] xl:w-[1400px] h-[200px] sm:h-[280px] md:h-[450px] lg:h-[695.55px] bg-white shadow-[0px_0px_0px_0.9056603908538818px_rgba(0,0,0,0.08)] overflow-hidden rounded-[6px] sm:rounded-[8px] lg:rounded-[9.06px] flex flex-col justify-start items-start">
                   {/* Dashboard Content */}
                   <div className="self-stretch flex-1 flex justify-start items-start">
                     {/* Main Content */}
-                    <div className="w-full h-full flex items-center justify-center">
+                    <div className="w-full h-full flex items-start justify-start">
                       <div className="relative w-full h-full overflow-hidden">
-                        {/* Product Image 1 - Plan your schedules */}
+                        {/* Notion Dashboard Visualization */}
                         <div
                           className={`absolute inset-0 transition-all duration-500 ease-in-out ${
                             activeCard === 0 ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"
                           }`}
                         >
-                          <img
-                            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dsadsadsa.jpg-xTHS4hGwCWp2H5bTj8np6DXZUyrxX7.jpeg"
-                            alt="Schedules Dashboard - Customer Subscription Management"
-                            className="w-full h-full object-cover"
-                          />
+                          <NotionDashboardVisualization type={0} language={language} />
                         </div>
 
-                        {/* Product Image 2 - Data to insights */}
                         <div
                           className={`absolute inset-0 transition-all duration-500 ease-in-out ${
                             activeCard === 1 ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"
                           }`}
                         >
-                          <img
-                            src="/analytics-dashboard-with-charts-graphs-and-data-vi.jpg"
-                            alt="Analytics Dashboard"
-                            className="w-full h-full object-cover"
-                          />
+                          <NotionDashboardVisualization type={1} language={language} />
                         </div>
 
-                        {/* Product Image 3 - Data visualization */}
                         <div
                           className={`absolute inset-0 transition-all duration-500 ease-in-out ${
                             activeCard === 2 ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"
                           }`}
                         >
-                          <img
-                            src="/data-visualization-dashboard-with-interactive-char.jpg"
-                            alt="Data Visualization Dashboard"
-                            className="w-full h-full object-contain" // Changed from object-cover to object-contain to preserve landscape aspect ratio
-                          />
+                          <NotionDashboardVisualization type={2} language={language} />
                         </div>
                       </div>
                     </div>
@@ -411,7 +829,7 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              <div className="self-stretch border-t border-[#E0DEDB] border-b border-[#E0DEDB] flex justify-center items-start">
+              <div className="self-stretch border-t border-[#E0DEDB] border-b border-[#E0DEDB] flex justify-start items-start">
                 <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
                   {/* Left decorative pattern */}
                   <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
@@ -426,7 +844,7 @@ export default function LandingPage() {
 
                 <div
                   ref={featuresRef}
-                  className={`flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0 ${
+                  className={`flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-start items-stretch gap-0 ${
                     featuresVisible ? "animate-on-scroll animate-fade-in-up" : "animate-on-scroll"
                   }`}
                 >
@@ -470,12 +888,12 @@ export default function LandingPage() {
               {/* Social Proof Section */}
               <div
                 ref={socialProofRef}
-                className={`w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center ${
+                className={`w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-start items-start ${
                   socialProofVisible ? "animate-on-scroll animate-fade-in-up" : "animate-on-scroll"
                 }`}
               >
-                <div className="self-stretch px-4 sm:px-6 md:px-24 py-8 sm:py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center gap-6">
-                  <div className="w-full max-w-[586px] px-4 sm:px-6 py-4 sm:py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-center gap-3 sm:gap-4 shadow-none">
+                <div className="self-stretch px-4 sm:px-6 md:px-24 py-8 sm:py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-start items-start gap-6">
+                  <div className="w-full max-w-[800px] px-4 sm:px-6 py-4 sm:py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-start gap-3 sm:gap-4 shadow-none">
                     <Badge
                       icon={
                         <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -495,10 +913,10 @@ export default function LandingPage() {
                       }
                       text={t.socialProof.badge}
                     />
-                    <div className="w-full max-w-[472.55px] text-center flex justify-center flex-col text-[#49423D] text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
+                    <div className="w-full max-w-[800px] text-left flex justify-start flex-col text-[#49423D] text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
                       {t.socialProof.title}
                     </div>
-                    <div className="self-stretch text-center text-[#605A57] text-sm sm:text-base font-normal leading-6 sm:leading-7 font-sans">
+                    <div className="self-stretch text-left text-[#605A57] text-sm sm:text-base font-normal leading-6 sm:leading-7 font-sans">
                       {t.socialProof.description}
                       <br className="hidden sm:block" />
                       {t.socialProof.descriptionLine2}
@@ -507,7 +925,7 @@ export default function LandingPage() {
                 </div>
 
                 {/* Logo Grid */}
-                <div className="self-stretch border-[rgba(55,50,47,0.12)] flex justify-center items-start border-t border-b-0">
+                <div className="self-stretch border-[rgba(55,50,47,0.12)] flex justify-start items-start border-t border-b-0">
                   <SocialProof />
                 </div>
               </div>
@@ -515,13 +933,13 @@ export default function LandingPage() {
               {/* Bento Grid Section */}
               <div
                 ref={bentoRef}
-                className={`w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center ${
+                className={`w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-start items-start ${
                   bentoVisible ? "animate-on-scroll animate-fade-in-up" : "animate-on-scroll"
                 }`}
               >
                 {/* Header Section */}
-                <div className="self-stretch px-4 sm:px-6 md:px-8 lg:px-0 lg:max-w-[1060px] lg:w-[1060px] py-8 sm:py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center gap-6">
-                  <div className="w-full max-w-[616px] lg:w-[616px] px-4 sm:px-6 py-4 sm:py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-center gap-3 sm:gap-4 shadow-none">
+                <div className="self-stretch px-4 sm:px-6 md:px-8 lg:px-0 lg:max-w-[1400px] xl:max-w-[1600px] py-8 sm:py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-start items-start gap-6">
+                  <div className="w-full max-w-[900px] lg:w-[900px] px-4 sm:px-6 py-4 sm:py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-start gap-3 sm:gap-4 shadow-none">
                     <Badge
                       icon={
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -533,10 +951,10 @@ export default function LandingPage() {
                       }
                       text={t.bento.badge}
                     />
-                    <div className="w-full max-w-[598.06px] lg:w-[598.06px] text-center flex justify-center flex-col text-[#49423D] text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
+                    <div className="w-full max-w-[900px] lg:w-[900px] text-left flex justify-start flex-col text-[#49423D] text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
                       {t.bento.title}
                     </div>
-                    <div className="self-stretch text-center text-[#605A57] text-sm sm:text-base font-normal leading-6 sm:leading-7 font-sans">
+                    <div className="self-stretch text-left text-[#605A57] text-sm sm:text-base font-normal leading-6 sm:leading-7 font-sans">
                       {t.bento.description}
                       <br />
                       {t.bento.descriptionLine2}
@@ -545,7 +963,7 @@ export default function LandingPage() {
                 </div>
 
                 {/* Bento Grid Content */}
-                <div className="self-stretch flex justify-center items-start">
+                <div className="self-stretch flex justify-start items-start">
                   <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
                     {/* Left decorative pattern */}
                     <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">

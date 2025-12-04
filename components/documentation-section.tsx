@@ -3,6 +3,510 @@
 import { useState, useEffect, useRef } from "react"
 import type React from "react"
 
+// Dashboard visualization component similar to numbers-that-speak
+function DashboardVisualization({ type }: { type: 0 | 1 | 2 }) {
+  const themeVars = {
+    "--nts-surface": "#ffffff",
+    "--nts-text-primary": "#2f3037",
+    "--nts-text-secondary": "rgba(47,48,55,0.8)",
+    "--nts-text-muted": "rgba(55,50,47,0.7)",
+    "--nts-border": "rgba(47,48,55,0.12)",
+    "--nts-shadow": "rgba(47,48,55,0.06)",
+  } as React.CSSProperties
+
+  // Telegram Commands Dashboard (Card 0)
+  if (type === 0) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "relative",
+          background: "transparent",
+          ...themeVars,
+        }}
+      >
+        <div
+          className="border border-[rgba(0,0,0,0.08)]"
+          style={{
+            width: "100%",
+            height: "100%",
+            background: "var(--nts-surface)",
+            borderRadius: "6.261px",
+            boxShadow:
+              "0px 0px 0px 0.783px rgba(47,48,55,0.12), 0px 1.565px 3.13px -0.783px rgba(47,48,55,0.06), 0px 2.348px 4.696px -1.174px rgba(47,48,55,0.06)",
+            overflow: "hidden",
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            padding: "18.783px",
+            boxSizing: "border-box",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "18.783px",
+              width: "100%",
+              height: "100%",
+              flexGrow: 1,
+            }}
+          >
+            {/* Header Section */}
+            <div
+              style={{
+                display: "flex",
+                gap: "6.261px",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "6.261px",
+                  alignItems: "flex-start",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "10.174px",
+                    lineHeight: "18.783px",
+                    color: "var(--nts-text-secondary)",
+                    whiteSpace: "pre",
+                  }}
+                >
+                  Telegram Commands
+                </div>
+                <div
+                  className="tracking-widest"
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontWeight: 500,
+                    fontSize: "18.783px",
+                    lineHeight: "20.348px",
+                    letterSpacing: "-0.587px",
+                    color: "var(--nts-text-primary)",
+                    whiteSpace: "pre",
+                  }}
+                >
+                  /task • /project • /client
+                </div>
+              </div>
+            </div>
+
+            {/* Commands List */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "9.391px",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+                width: "100%",
+                flexGrow: 1,
+              }}
+            >
+              {[
+                { command: "/task", label: "Create Task", count: "12" },
+                { command: "/project", label: "New Project", count: "8" },
+                { command: "/client", label: "Add Client", count: "5" },
+                { command: "/finance", label: "Record Finance", count: "3" },
+                { command: "/all", label: "Sync All", count: "1" },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "100%",
+                    padding: "9.391px",
+                    backgroundColor: "rgba(0,0,0,0.02)",
+                    borderRadius: "4px",
+                  }}
+                >
+                  <div style={{ display: "flex", flexDirection: "column", gap: "3.13px" }}>
+                    <div
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        fontWeight: 600,
+                        fontSize: "9.391px",
+                        lineHeight: "14.087px",
+                        color: "var(--nts-text-primary)",
+                      }}
+                    >
+                      {item.command}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        fontWeight: 400,
+                        fontSize: "7.826px",
+                        lineHeight: "12.522px",
+                        color: "var(--nts-text-muted)",
+                      }}
+                    >
+                      {item.label}
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontWeight: 500,
+                      fontSize: "9.391px",
+                      lineHeight: "14.087px",
+                      color: "var(--nts-text-secondary)",
+                      backgroundColor: "rgba(0,0,0,0.05)",
+                      padding: "3.13px 6.261px",
+                      borderRadius: "3px",
+                    }}
+                  >
+                    {item.count}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Gmail Inbox Dashboard (Card 1)
+  if (type === 1) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "relative",
+          background: "transparent",
+          ...themeVars,
+        }}
+      >
+        <div
+          className="border border-[rgba(0,0,0,0.08)]"
+          style={{
+            width: "100%",
+            height: "100%",
+            background: "var(--nts-surface)",
+            borderRadius: "6.261px",
+            boxShadow:
+              "0px 0px 0px 0.783px rgba(47,48,55,0.12), 0px 1.565px 3.13px -0.783px rgba(47,48,55,0.06), 0px 2.348px 4.696px -1.174px rgba(47,48,55,0.06)",
+            overflow: "hidden",
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            padding: "18.783px",
+            boxSizing: "border-box",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "18.783px",
+              width: "100%",
+              height: "100%",
+              flexGrow: 1,
+            }}
+          >
+            {/* Header Section */}
+            <div
+              style={{
+                display: "flex",
+                gap: "6.261px",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "6.261px",
+                  alignItems: "flex-start",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "10.174px",
+                    lineHeight: "18.783px",
+                    color: "var(--nts-text-secondary)",
+                    whiteSpace: "pre",
+                  }}
+                >
+                  Gmail Inbox
+                </div>
+                <div
+                  className="tracking-widest"
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontWeight: 500,
+                    fontSize: "18.783px",
+                    lineHeight: "20.348px",
+                    letterSpacing: "-0.587px",
+                    color: "var(--nts-text-primary)",
+                    whiteSpace: "pre",
+                  }}
+                >
+                  47 emails synced
+                </div>
+              </div>
+            </div>
+
+            {/* Email List */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "6.261px",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+                width: "100%",
+                flexGrow: 1,
+              }}
+            >
+              {[
+                { from: "Client A", subject: "Project Update", time: "2h ago", unread: true },
+                { from: "Team Lead", subject: "Meeting Notes", time: "5h ago", unread: true },
+                { from: "Finance", subject: "Invoice #1234", time: "1d ago", unread: false },
+                { from: "Client B", subject: "New Request", time: "2d ago", unread: false },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "9.391px",
+                    width: "100%",
+                    padding: "9.391px",
+                    backgroundColor: item.unread ? "rgba(0,0,0,0.03)" : "transparent",
+                    borderRadius: "4px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "6.261px",
+                      height: "6.261px",
+                      borderRadius: "50%",
+                      backgroundColor: item.unread ? "#5D4E37" : "transparent",
+                      marginTop: "4px",
+                      flexShrink: 0,
+                    }}
+                  />
+                  <div style={{ display: "flex", flexDirection: "column", gap: "3.13px", flexGrow: 1 }}>
+                    <div
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        fontWeight: item.unread ? 600 : 500,
+                        fontSize: "9.391px",
+                        lineHeight: "14.087px",
+                        color: "var(--nts-text-primary)",
+                      }}
+                    >
+                      {item.from}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        fontWeight: 400,
+                        fontSize: "7.826px",
+                        lineHeight: "12.522px",
+                        color: "var(--nts-text-muted)",
+                      }}
+                    >
+                      {item.subject}
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontWeight: 400,
+                      fontSize: "7.826px",
+                      lineHeight: "12.522px",
+                      color: "var(--nts-text-muted)",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {item.time}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Daily Summary Dashboard (Card 2)
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        position: "relative",
+        background: "transparent",
+        ...themeVars,
+      }}
+    >
+      <div
+        className="border border-[rgba(0,0,0,0.08)]"
+        style={{
+          width: "100%",
+          height: "100%",
+          background: "var(--nts-surface)",
+          borderRadius: "6.261px",
+          boxShadow:
+            "0px 0px 0px 0.783px rgba(47,48,55,0.12), 0px 1.565px 3.13px -0.783px rgba(47,48,55,0.06), 0px 2.348px 4.696px -1.174px rgba(47,48,55,0.06)",
+          overflow: "hidden",
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          padding: "18.783px",
+          boxSizing: "border-box",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "18.783px",
+            width: "100%",
+            height: "100%",
+            flexGrow: 1,
+          }}
+        >
+          {/* Header Section */}
+          <div
+            style={{
+              display: "flex",
+              gap: "6.261px",
+              alignItems: "flex-start",
+              justifyContent: "flex-start",
+              width: "100%",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "6.261px",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontWeight: 600,
+                  fontSize: "10.174px",
+                  lineHeight: "18.783px",
+                  color: "var(--nts-text-secondary)",
+                  whiteSpace: "pre",
+                }}
+              >
+                Daily Summary
+              </div>
+              <div
+                className="tracking-widest"
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "18.783px",
+                  lineHeight: "20.348px",
+                  letterSpacing: "-0.587px",
+                  color: "var(--nts-text-primary)",
+                  whiteSpace: "pre",
+                }}
+              >
+                Today&apos;s Overview
+              </div>
+            </div>
+          </div>
+
+          {/* Stats Grid */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "9.391px",
+              alignItems: "flex-start",
+              justifyContent: "flex-start",
+              width: "100%",
+              flexGrow: 1,
+            }}
+          >
+            {[
+              { label: "Today&apos;s Tasks", value: "12", color: "#5D4E37" },
+              { label: "Overdue", value: "3", color: "#8B6F47" },
+              { label: "New Projects", value: "2", color: "#5D4E37" },
+              { label: "Completed", value: "8", color: "#5D4E37" },
+            ].map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  padding: "9.391px",
+                  backgroundColor: "rgba(0,0,0,0.02)",
+                  borderRadius: "4px",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontWeight: 500,
+                    fontSize: "9.391px",
+                    lineHeight: "14.087px",
+                    color: "var(--nts-text-secondary)",
+                  }}
+                >
+                  {item.label}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "12.522px",
+                    lineHeight: "18.783px",
+                    color: item.color,
+                    backgroundColor: "rgba(93,78,55,0.1)",
+                    padding: "3.13px 6.261px",
+                    borderRadius: "3px",
+                  }}
+                >
+                  {item.value}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // Hook for scroll animations
 function useIntersectionObserver(
   ref: React.RefObject<HTMLElement>,
@@ -132,23 +636,23 @@ export default function DocumentationSection({ language = "en" }: DocumentationS
   return (
     <div
       ref={sectionRef}
-      className={`w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center ${
+      className={`w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-start items-start ${
         isVisible ? "animate-on-scroll animate-fade-in-up" : "animate-on-scroll"
       }`}
     >
       {/* Header Section */}
-      <div className="self-stretch px-6 md:px-24 py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center gap-6">
-        <div className="w-full max-w-[586px] px-6 py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-center gap-4 shadow-none">
+      <div className="self-stretch px-6 md:px-24 py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-start items-start gap-6">
+        <div className="w-full max-w-[900px] px-6 py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-start gap-4 shadow-none">
           <Badge
             icon={
               <div className="w-[10.50px] h-[10.50px] outline outline-[1.17px] outline-[#37322F] outline-offset-[-0.58px] rounded-full"></div>
             }
             text={t.badge}
           />
-          <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
+          <div className="self-stretch text-left flex justify-start flex-col text-[#49423D] text-3xl md:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
             {t.title}
           </div>
-          <div className="self-stretch text-center text-[#605A57] text-base font-normal leading-7 font-sans">
+          <div className="self-stretch text-left text-[#605A57] text-base font-normal leading-7 font-sans">
             {t.description}
             <br />
             {t.descriptionLine2}
@@ -198,15 +702,9 @@ export default function DocumentationSection({ language = "en" }: DocumentationS
           {/* Right Column - Image */}
           <div className="w-full md:w-auto rounded-lg flex flex-col justify-center items-center gap-2 order-1 md:order-2 md:px-0 px-[00]">
             <div className="w-full md:w-[580px] h-[250px] md:h-[420px] bg-white shadow-[0px_0px_0px_0.9056603908538818px_rgba(0,0,0,0.08)] overflow-hidden rounded-lg flex flex-col justify-start items-start">
-              <div
-                className={`w-full h-full transition-all duration-300 ${
-                  activeCard === 0
-                    ? "bg-gradient-to-br from-blue-50 to-blue-100"
-                    : activeCard === 1
-                      ? "bg-gradient-to-br from-purple-50 to-purple-100"
-                      : "bg-gradient-to-br from-green-50 to-green-100"
-                }`}
-              />
+              <div className="w-full h-full transition-all duration-300">
+                <DashboardVisualization type={activeCard as 0 | 1 | 2} />
+              </div>
             </div>
           </div>
         </div>
