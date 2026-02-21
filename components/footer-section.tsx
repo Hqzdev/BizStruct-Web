@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
+import Link from "next/link"
 import type React from "react"
 
 // Hook for scroll animations
@@ -37,12 +38,26 @@ const footerTranslations = {
     product: "Product",
     features: "Features",
     pricing: "Pricing",
+    contacts: "Contacts & legal",
+    contactEmail: "Email",
+    contactTelegram: "Telegram bot",
+    contactAddress: "Address",
+    contactResponse: "Response within 24 hours on business days",
+    requisites: "Requisites",
+    offer: "Terms & refund",
   },
   ru: {
     tagline: "Ваш Центр управления Telegram & Notion",
     product: "Продукт",
     features: "Функции",
     pricing: "Цены",
+    contacts: "Контакты и реквизиты",
+    contactEmail: "Email",
+    contactTelegram: "Telegram-бот",
+    contactAddress: "Юридический адрес",
+    contactResponse: "Ответ в течение 24 часов в рабочие дни",
+    requisites: "Реквизиты",
+    offer: "Оферта и возврат",
   },
 }
 
@@ -79,17 +94,35 @@ export default function FooterSection({ language = "en" }: FooterSectionProps) {
         {/* Navigation Links */}
         <div className="self-stretch p-4 md:p-8 flex flex-col sm:flex-row flex-wrap justify-start sm:justify-between items-start gap-6 md:gap-8">
           {/* Product Column */}
-          <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
+          <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[140px]">
             <div className="self-stretch text-[rgba(73,66,61,0.50)] text-sm font-medium leading-5 font-sans">
               {t.product}
             </div>
             <div className="flex flex-col justify-end items-start gap-2">
-              <a href="/features" className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
+              <Link href="/features" className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
                 {t.features}
-              </a>
-              <a href="/pricing" className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
+              </Link>
+              <Link href="/pricing" className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
                 {t.pricing}
-              </a>
+              </Link>
+            </div>
+          </div>
+
+          {/* Contacts & legal Column */}
+          <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[140px]">
+            <div className="self-stretch text-[rgba(73,66,61,0.50)] text-sm font-medium leading-5 font-sans">
+              {t.contacts}
+            </div>
+            <div className="flex flex-col justify-end items-start gap-2">
+              <Link href="/contacts" className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
+                {t.contactEmail}, {t.contactTelegram}
+              </Link>
+              <Link href="/contacts#requisites" className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
+                {t.requisites}
+              </Link>
+              <Link href="/offer" className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
+                {t.offer}
+              </Link>
             </div>
           </div>
         </div>

@@ -45,18 +45,18 @@ const pricingTranslations = {
     hero: {
       title: "Simple, transparent pricing",
       subtitle: "One payment. Lifetime access. No subscriptions.",
-      description: "Start with a 3-day free trial. If you love it, unlock lifetime access with a single $30 payment.",
+      description: "Start with a 3-day free trial. If you love it, unlock lifetime access with a single 1399₽ payment.",
     },
     plan: {
       title: "Lifetime Access",
       badge: "Best Value",
-      price: "$30",
+      price: "1399₽",
       priceLabel: "one-time payment",
       description: "Get lifetime access to BizStruct Assistant with all current features and future updates for this version.",
       trial: "3-day free trial",
       trialDescription: "Try everything risk-free. Cancel anytime during the trial period.",
       cta: "Start 3-day free trial",
-      ctaNote: "After the trial ends, you'll be charged a one-time payment of $30. No subscriptions, cancel anytime during the trial.",
+      ctaNote: "After the trial ends, you'll be charged a one-time payment of 1399₽. No subscriptions, cancel anytime during the trial.",
     },
     features: {
       title: "Everything included",
@@ -76,7 +76,7 @@ const pricingTranslations = {
       items: [
         {
           question: "What happens after the 3-day trial?",
-          answer: "After your 3-day free trial ends, you'll be charged a one-time payment of $30 for lifetime access. You can cancel anytime during the trial period if you decide it's not for you.",
+          answer: "After your 3-day free trial ends, you'll be charged a one-time payment of 1399₽ for lifetime access. You can cancel anytime during the trial period if you decide it's not for you.",
         },
         {
           question: "What does 'lifetime access' mean?",
@@ -111,18 +111,18 @@ const pricingTranslations = {
     hero: {
       title: "Простое, прозрачное ценообразование",
       subtitle: "Один платёж. Пожизненный доступ. Без подписок.",
-      description: "Начните с 3-дневного бесплатного пробного периода. Если вам понравится, получите пожизненный доступ за один платёж в размере $30.",
+      description: "Начните с 3-дневного бесплатного пробного периода. Если вам понравится, получите пожизненный доступ за один платёж в размере 1399₽.",
     },
     plan: {
       title: "Пожизненный доступ",
       badge: "Лучшее предложение",
-      price: "$30",
+      price: "1399₽",
       priceLabel: "единоразовый платёж",
       description: "Получите пожизненный доступ к BizStruct Assistant со всеми текущими функциями и будущими обновлениями для этой версии.",
       trial: "3-дневный бесплатный пробный период",
       trialDescription: "Попробуйте всё без риска. Отмените в любое время в течение пробного периода.",
       cta: "Начать 3-дневный пробный период",
-      ctaNote: "После окончания пробного периода с вас будет списан единоразовый платёж в размере $30. Без подписок, отмените в любое время в течение пробного периода.",
+      ctaNote: "После окончания пробного периода с вас будет списан единоразовый платёж в размере 1399₽. Без подписок, отмените в любое время в течение пробного периода.",
     },
     features: {
       title: "Всё включено",
@@ -142,7 +142,7 @@ const pricingTranslations = {
       items: [
         {
           question: "Что происходит после 3-дневного пробного периода?",
-          answer: "После окончания вашего 3-дневного бесплатного пробного периода с вас будет списан единоразовый платёж в размере $30 за пожизненный доступ. Вы можете отменить в любое время в течение пробного периода, если решите, что это не для вас.",
+          answer: "После окончания вашего 3-дневного бесплатного пробного периода с вас будет списан единоразовый платёж в размере 1399₽ за пожизненный доступ. Вы можете отменить в любое время в течение пробного периода, если решите, что это не для вас.",
         },
         {
           question: "Что означает 'пожизненный доступ'?",

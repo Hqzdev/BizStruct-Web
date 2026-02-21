@@ -40,12 +40,12 @@ const pricingTranslations = {
     planTitle: "Lifetime Access",
     planDescription:
       "3-day free trial, then a single one-time payment for lifetime access to BizStruct Assistant — no subscriptions, no recurring fees.",
-    price: "$30",
+    price: "1399₽",
     priceLabel: "one-time payment",
     priceNote: "Includes all current features and future updates for this version of BizStruct Assistant.",
     cta: "Start 3-day free trial",
     ctaNote: "After the trial ends, you'll be charged a one-time payment of",
-    ctaNoteAmount: "$30",
+    ctaNoteAmount: "1399₽",
     ctaNoteEnd: ". No subscriptions, cancel anytime during the trial.",
     features: [
       "Telegram bot for your main account",
@@ -63,12 +63,12 @@ const pricingTranslations = {
     planTitle: "Пожизненный доступ",
     planDescription:
       "3 дня бесплатного пробного периода, затем один единоразовый платёж за пожизненный доступ к BizStruct Assistant — без подписок, без повторяющихся платежей.",
-    price: "$30",
+    price: "1399₽",
     priceLabel: "единоразовый платёж",
     priceNote: "Включает все текущие функции и будущие обновления для этой версии BizStruct Assistant.",
     cta: "Начать 3-дневный пробный период",
     ctaNote: "После окончания пробного периода с вас будет списан единоразовый платёж в размере",
-    ctaNoteAmount: "$30",
+    ctaNoteAmount: "1399₽",
     ctaNoteEnd: ". Без подписок, отмените в любое время во время пробного периода.",
     features: [
       "Telegram бот для вашего основного аккаунта",
