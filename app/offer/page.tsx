@@ -26,8 +26,12 @@ const offerTranslations = {
     section4Title: "4. Offer and acceptance",
     section4Text:
       "This offer is published on the website. By paying for the service, the buyer accepts the terms of this offer. The link to the offer may also be provided in the bot at the time of payment.",
+    section5Title: "5. Personal data",
+    section5Text:
+      "Processing of personal data is carried out in accordance with the Privacy Policy published on this website.",
     backToHome: "Back to home",
     contactsLink: "Contacts and requisites",
+    privacyLink: "Privacy policy",
   },
   ru: {
     title: "Оферта и возврат",
@@ -49,8 +53,12 @@ const offerTranslations = {
     section4Title: "4. Оферта и согласие",
     section4Text:
       "На сайте размещена оферта (договор оферты). Оплачивая услугу, вы соглашаетесь с условиями оферты. Ссылку на оферту можно дублировать в боте при оплате.",
+    section5Title: "5. Персональные данные",
+    section5Text:
+      "Обработка персональных данных осуществляется в соответствии с Политикой обработки персональных данных, размещённой на данном сайте.",
     backToHome: "На главную",
     contactsLink: "Контакты и реквизиты",
+    privacyLink: "Политика конфиденциальности",
   },
 }
 
@@ -100,6 +108,17 @@ export default function OfferPage() {
           <section className="space-y-3">
             <h2 className="text-[#49423D] text-lg font-semibold">{t.section4Title}</h2>
             <p className="text-[#605A57] text-sm leading-relaxed">{t.section4Text}</p>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-[#49423D] text-lg font-semibold">{t.section5Title}</h2>
+            <p className="text-[#605A57] text-sm leading-relaxed">{t.section5Text}</p>
+            <Link
+              href="/privacy"
+              className="text-[#49423D] text-sm font-medium hover:text-[#37322F] underline underline-offset-2 inline-block mt-1"
+            >
+              {t.privacyLink}
+            </Link>
           </section>
 
           <div className="pt-6 flex flex-col gap-2">

@@ -45,6 +45,7 @@ const footerTranslations = {
     contactResponse: "Response within 24 hours on business days",
     requisites: "Requisites",
     offer: "Terms & refund",
+    privacy: "Privacy policy",
   },
   ru: {
     tagline: "Ваш Центр управления Telegram & Notion",
@@ -58,6 +59,7 @@ const footerTranslations = {
     contactResponse: "Ответ в течение 24 часов в рабочие дни",
     requisites: "Реквизиты",
     offer: "Оферта и возврат",
+    privacy: "Политика конфиденциальности",
   },
 }
 
@@ -122,6 +124,9 @@ export default function FooterSection({ language = "en" }: FooterSectionProps) {
               </Link>
               <Link href="/offer" className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
                 {t.offer}
+              </Link>
+              <Link href="/privacy" className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
+                {t.privacy}
               </Link>
             </div>
           </div>
