@@ -61,12 +61,12 @@ const contactsTranslations = {
 
 // Placeholder data — replace with real data before publication
 const PLACEHOLDER = {
-  sellerName: "Strelkov Yaroslav",
+  sellerName: "Strelkov Yaroslav Kirillovich",
   email: "wkeyqwert@icloud.com",
   telegramUrl: "https://t.me/Bizstruct_bot",
   telegramLabel: "t.me/Bizstruct_bot",
   address: "Российская Федерация",
-  fullName: "Strelkov Yaroslav",
+  fullName: "Strelkov Yaroslav Kirillovich",
   inn: "590616975703",
   ogrn: "—",
   kpp: "—",
